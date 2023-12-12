@@ -6,6 +6,16 @@ Description: A theme built originally for the UConn Extension Publication Search
 Version: 1.0
 */
 
+/** small screens hide .upper-nav **/
+@media screen and (max-width: 960px){
+  .upper-nav{
+    display:none;
+  }
+
+  #uconn-banner{
+    padding-top:16px!important;
+  }
+}
 
 
 #body{

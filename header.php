@@ -68,7 +68,7 @@
 
 <div style="background-color:#000E2F;border-bottom:5px solid #3B833F;">
 <div class="container" style="padding:0px;">
-<nav class="upper-nav">
+<nav class="upper-nav" style="padding-bottom:0px;">
     <a class="parent-title" href="https://cahnr.uconn.edu/">COLLEGE OF AGRICULTURE, HEALTH AND NATURAL RESOURCES</a>
 </nav>
 <!--Level 1 Title-->

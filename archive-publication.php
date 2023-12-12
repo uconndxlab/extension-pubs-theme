@@ -6,22 +6,21 @@
 get_header();
 ?>
 <style>
+    .pagination {
+        margin-right: 50px;
+        margin-bottom: 50px;
+        margin-top: 50px;
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+    }
 
-.pagination {
-    margin-right:50px;
-    margin-bottom:50px;
-    margin-top:50px;
-    width:100%;
-    display: flex;
-    justify-content: flex-end;
-}
-.pagination .page-numbers {
-    color: #000;
-    padding: 5px 5px;
-    margin-right: 5px;
-    font-weight: 600;
-}
-
+    .pagination .page-numbers {
+        color: #000;
+        padding: 5px 5px;
+        margin-right: 5px;
+        font-weight: 600;
+    }
 </style>
 
 <div class="container">
@@ -36,9 +35,9 @@ get_header();
 
     <div id="searchApp" class="container">
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-lg-3">
                 <div class="filter-pub">
-                    <form method="get">
+                    <form hx-get="/publications" hx-target="#publication-list" hx-push-url="true" hx-swap="outerHTML" hx-select="#publication-list" hx-trigger="change" method="get">
                         <section class="filters">
                             <div>
                                 <p><strong>Category:</strong></p>
@@ -58,7 +57,8 @@ get_header();
                                     echo '<label for="' . $category->slug . '" class="checkbox-contain">' . $category->name . '
                                         <input name = "category[]"';
 
-                                    if ($currently_selected_categories && in_array($category->slug, $currently_selected_categories)
+                                    if (
+                                        $currently_selected_categories && in_array($category->slug, $currently_selected_categories)
                                     ) {
                                         echo 'checked';
                                     }
@@ -96,7 +96,6 @@ get_header();
                                 </select>
 
                             </div>
-                            <button type="submit" class="btn btn-primary my-4">Filter</button>
 
                 </div>
 
@@ -104,17 +103,17 @@ get_header();
 
             </div>
 
-            <div class="col-md-9">
-            <?php
+            <div class="col-lg-9">
+                <?php
 
-the_posts_pagination(
-    array(
-        'prev_text'          => "Prev",
-        'next_text'          => "Next",
-        'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'twentytwentyone' ) . ' </span>',
-    )
-);
-?>
+                the_posts_pagination(
+                    array(
+                        'prev_text'          => "Prev",
+                        'next_text'          => "Next",
+                        'before_page_number' => '<span class="meta-nav screen-reader-text">' . __('Page', 'twentytwentyone') . ' </span>',
+                    )
+                );
+                ?>
                 <ul id="publication-list">
                     <!-- <li class="publication-block"><a href="./interior.html"><img src="./img/farm.jpg">
                             <p class="publication-label"><span>Health</span></p>
@@ -138,15 +137,9 @@ the_posts_pagination(
 
                         ?>
                         <li class="publication-block">
-                            <a 
-                            
-                            <?php if ($isPDF) : ?>
-                                target="_blank"
-                            <?php endif; ?>
+                            <a <?php if ($isPDF) : ?> target="_blank" <?php endif; ?> href="<?php echo $item_link
 
-                            href="<?php echo $item_link
-
-                                        ?>">
+                                                                                            ?>">
                                 <?php the_post_thumbnail(); ?>
                                 <?php if ($isPDF) : ?>
                                     <!-- if it's a pdf, show the pdf icon, material design icon -->
@@ -155,10 +148,10 @@ the_posts_pagination(
                                 <p class="publication-label"><span><?php echo $first_category ?></span></p>
                                 <h2>
 
-                                    <?php 
+                                    <?php
                                     the_title(); ?>
 
-                                    
+
                                 </h2>
                                 <p><?php the_excerpt(); ?></p>
                             </a>
@@ -167,20 +160,20 @@ the_posts_pagination(
 
 
                 </ul>
-<?php
+                <?php
 
-the_posts_pagination(
-    array(
-        'prev_text'          => "Prev",
-        'next_text'          => "Next",
-        'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'twentytwentyone' ) . ' </span>',
-    )
-);
-?>
+                the_posts_pagination(
+                    array(
+                        'prev_text'          => "Prev",
+                        'next_text'          => "Next",
+                        'before_page_number' => '<span class="meta-nav screen-reader-text">' . __('Page', 'twentytwentyone') . ' </span>',
+                    )
+                );
+                ?>
             </div>
         </div>
     </div>
 </div>
 
-    <?php
+<?php
 get_footer();
